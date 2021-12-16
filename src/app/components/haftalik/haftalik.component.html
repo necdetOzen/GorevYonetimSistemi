@@ -1,0 +1,233 @@
+<style>
+    .Add{
+        background-color: rgb(44, 167, 40);
+        border-radius:5px;
+        width: 80px;
+        height: 30px;
+        border:0 ;
+        color: white;
+        
+        margin-top: 5px;
+        
+    }
+    .Add:hover{
+        background-color:rgba(187, 164, 149, 0.842);
+        border: none;
+        color: black;
+        font-size:medium;
+        
+    }
+    .Delete{
+        margin-right: 5px;
+        background-color: rgba(255, 0, 0, 0);
+        border-radius:10px;
+        width: 30px;
+        height: 30px;
+        border:0 ;
+        color: black;
+    }
+    .Delete:hover{
+
+        background-color: brown;
+        border: none;
+        font-size:medium;
+        color: rgb(255, 255, 255);
+    }
+    .Edit{
+        
+        background-color: rgba(255, 0, 0, 0);
+        border-radius:10px;
+        width: 30px;
+        height: 30px;
+        border:0 ;
+        color: black;
+    }
+    .Edit:hover{
+
+        background-color: rgb(62, 70, 177);
+        border: none;
+        font-size:medium;
+        color: rgb(255, 255, 255);
+    }
+    .p-table{
+        width: 4400px;
+    }
+</style>
+<div class="card">
+    
+<div  [formGroup]="formHatirlatma">
+    <div class="p-text-bold" style="font-size: 20px;margin-left: -200px; margin-bottom: 10px; margin-top: 40px;" align="middle">Haftalık Görevler Formu</div>
+    <div class="mt-5 box">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                        <label for="ad">Görev Adı</label><br>
+                </div>
+                <div class="form-col" >
+                    <div class="col">
+                        <input
+                          type="text"
+                          pInputText
+                          id="ad"
+                          formControlName="ad"
+                          placeholder="Görev Adı"
+                          class="p-inputtext-sm"
+                        />
+                      </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                    <label for="aciklama">Görev Açıklaması</label><br>
+                    </div>
+                    <div class="form-row">
+                    <div class="col">
+                        <input
+                          type="text"
+                          pInputText
+                          id="aciklama"
+                          formControlName="aciklama"
+                          placeholder="Görev Açıklaması"
+                          class="p-inputtext-sm"
+                        />
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                    
+                    <label for="date">Başlangıç Tarihi</label>
+                </div>
+                <div class="form-row">
+                    <div class="col" >
+                        <p-calendar
+                          appendTo="body"
+                          id="date"
+                          class="p-inputtext-sm"
+                          readonly="true"
+                          placeholder="Başlangıç Tarihi"
+                          formControlName="date"
+                          [showIcon]="true"
+                          [readonlyInput]="true"
+                          
+                        ></p-calendar>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                    <label for="durum">Durumu</label><br>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <p-dropdown
+                          appendTo="body"
+                          id="durum"
+                          formControlName="durum"
+                          [options]="durumRange"
+                          placeholder="Durum"
+                          class="p-inputtext-sm"
+                        ></p-dropdown>
+                      </div>
+                </div>
+            </div>      
+        </div>
+        <div align="end">     
+            <button class="Add" (click)="ekle()" alig>Ekle</button>
+        </div>
+        
+    </div>
+    
+      
+    </div></div>
+
+
+
+<p-table class="p-table" [value]="hatirlatmaList" [scrollable]="true"  scrollHeight="300px" >
+    <ng-template pTemplate="header" >
+        <tr>
+            
+            <th>Görev Adı</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Görev Açıklaması</th>
+            <th>Durumu</th>
+            <th>İşlem</th>
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-gorev let-element>
+        <tr>
+            <td>{{gorev.ad}}</td>
+            <td>{{gorev.tarih}}</td>
+            <td>{{gorev.aciklama}}</td>
+            <td>{{gorev.durum}}</td>
+            <td><button class="Delete" (click)="sil(element)"><i class="pi pi-fw pi-times" style="font-size: 1rem," ></i></button>
+            
+            <button class="Edit" (click)="showDialog(element)"><i class="pi pi-fw pi-pencil" style="font-size: 1rem" ></i></button></td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    <span>Düzenle</span>
+    <p-table class="p-table" [value]="hatirlatmaList" [scrollable]="true"  scrollHeight="300px" >
+        <ng-template pTemplate="header" >
+            <tr>
+                
+                <th>Görev Adı</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Görev Açıklaması</th>
+                <th>Durumu</th>
+                
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gorev let-element>
+            <tr>
+                <td><input
+                    type="text"
+                    pInputText
+                    id="ad"
+                    formControlName="ad"
+                    placeholder="Görev Adı"
+                    class="p-inputtext-sm"
+                  />
+                </td>
+                <td><input
+                    type="text"
+                    pInputText
+                    id="aciklama"
+                    formControlName="aciklama"
+                    placeholder="Görev Açıklaması"
+                    class="p-inputtext-sm"
+                  />
+                </td>
+                <td><p-calendar
+                    appendTo="body"
+                    id="date"
+                    class="p-inputtext-sm"
+                    readonly="true"
+                    placeholder="Başlangıç Tarihi"
+                    formControlName="date"
+                    [showIcon]="true"
+                    [readonlyInput]="true"
+                    
+                  ></p-calendar></td>
+                <td><p-dropdown
+                    appendTo="body"
+                    id="durum"
+                    formControlName="durum"
+                    [options]="durumRange"
+                    placeholder="Durum"
+                    class="p-inputtext-sm"
+                  ></p-dropdown>
+                </td>
+
+            </tr>
+        </ng-template>
+        
+    </p-table>
+    <div align="end"> 
+          <button class="kaydet" ><i class="pi pi-fw pi-check" style="font-size: 1rem," align="end"></i></button>
+    </div>
+</p-dialog>

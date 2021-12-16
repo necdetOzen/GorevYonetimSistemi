@@ -1,2 +1,2 @@
 # GorevYonetimSistemi
-GorevYonetim
+ Görev Planlaması

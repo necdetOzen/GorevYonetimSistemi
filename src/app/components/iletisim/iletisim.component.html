@@ -1,0 +1,81 @@
+<style>
+ footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 200px;
+    background-color: rgb(108, 109, 109);
+    
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+  .p-text-bold{color: white;}
+</style>
+<div class="card">
+    
+<div  >
+    <div class="p-text-bold" style="font-size: 20px;margin-left: -50px; margin-bottom: 10px; margin-top: 40px;" align="middle">
+        Görev Yönetim Planlama </div>
+    <div class="mt-5 box">
+        <div class="form-row">
+            <div class="col-md-12">
+               
+                <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+                <p-gmap  [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+                
+                <!-- <button type="button" pButton label="Clear" icon="pi pi-times" (click)="clear()" style="margin-right:.25em"></button>
+                <button type="button" pButton label="Zoom In" icon="pi pi-plus" (click)="zoomIn(gmap.getMap())" style="margin-right:.25em"></button>
+                <button type="button" pButton label="Zoom Out" icon="pi pi-minus" (click)="zoomOut(gmap.getMap())"></button> -->
+                
+                <p-dialog showEffect="fade"  header="New Location" [style]="{width: '300px'}">>
+                    <div class="p-grid p-fluid" >
+                        <div class="p-col-2"><label for="title">Label</label></div>
+                        <div class="p-col-10"><input type="text" pInputText id="title" ></div>
+                
+                        <div class="p-col-2"><label for="lat">Lat</label></div>
+                        <div class="p-col-10"><input id="lat" type="text" readonly pInputText ></div>
+                
+                        <div class="p-col-2"><label for="lng">Lng</label></div>
+                        <div class="p-col-10"><input id="lng" type="text" readonly pInputText ></div>
+                
+                        <div class="p-col-2"><label for="drg">Drag</label></div>
+                        <div class="p-col-10"><p-checkbox  [binary]="true" [style]="{'margin-top':'.25em'}"></p-checkbox></div>
+                    </div>
+                    <ng-template pTemplate="footer">
+                        <div>
+                            <button type="button" pButton label="Add Marker" icon="pi-plus"></button>
+                        </div>
+                    </ng-template>
+                </p-dialog>
+                
+                    <footer>
+      
+      <a  target="_blank" rel="noopener"> 
+        
+      <div class="p-text-bold" style="font-size: 20px;margin-left: 50px; margin-bottom: 10px;" align="middle">
+                    Hakkında  </div>
+      </a>
+  </footer>
+            </div>
+            
+            
+            
+                  
+        </div>
+        
+        
+    </div>
+    
+      
+    </div></div>
+
+
+
+
+
+
+

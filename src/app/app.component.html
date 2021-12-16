@@ -1,0 +1,263 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .float-input {
+
+    margin-right: 30px;
+    background-color: #ffffffc4;
+  }
+
+  .pi {
+    margin-right: 30px;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+
+  }
+
+  .content {
+    display: flex;
+    background-color: rgba(87, 202, 202, 0);
+    border: black;
+    margin: 20px auto 32px;
+
+    width: 100%;
+    height: 60px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    all: unset;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 40px;
+    width: 168px;
+    border: 1px solid rgb(156, 156, 156);
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .panelMenu {
+    margin-top: 40px;
+    margin-left: 200px;
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .tMenu {
+    margin-top: 40px;
+  }
+
+  .pi {
+    color: white;
+  }
+
+  .sidebar {
+    height: 150%;
+    margin-left: -2%;
+    padding-top: 20px;
+  }
+  .p-speedDial{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 100px;
+  }
+  .pi:hover {
+font-size: 2.5rem;
+}
+  /* Sidebar yükseklik Sorunu */
+</style>
+<!-- Side Menu Bar -->
+
+
+<div>
+
+<div style="height: 1000px;"><div *ngIf="opened" class="sidebar"  style="background-color: #06202d; width: 250px;height: 100%; padding-left: 20px;" >
+
+  <p-tieredMenu class="tMenu" [model]="items"
+    [style]="{'width':'220px','font-size':'15px','height':'320px', 'padding-top': '10%'} "></p-tieredMenu>
+
+</div>
+<div style="height: 1000px;"><div *ngIf="opened" class="form"  style=" padding-left: 20px;" >
+
+  <div class="form" style="margin-left: 250px; margin-top: -78%;">
+  <router-outlet></router-outlet>
+</div>
+
+</div>
+</div>
+  <!-- <div class="panelMenu"> 
+  <p-menubar [model]="items"></p-menubar>
+</div> -->
+
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">
+    <img width="30" />
+    <!-- <i class=" pi pi-angle-double-down" (click)="toggleSidebar()" hideIcon="pi pi-angle-double-right" style="font-size: 2rem" ></i> -->
+    <img width="40" />
+
+    <span style="font-size: 15px;">Görev Yönetim Planlaması</span>
+    <div class="spacer"></div>
+    <span class="p-float-label">
+      <input class="float-input" id="float-input" type="text" style="height: 30px; width: 200px;" pInputText>
+      <label for="float-input">Search</label>
+    </span>
+    <div class="badges">
+      <i class="pi pi-bell p-mr-12 p-text-secondary" pBadge style="font-size: 1.5rem, " severity="success"
+        [value]="'2'"></i>
+      <i class="pi pi-calendar p-mr-12 p-text-secondary" routerLink="/takvim" pBadge style="font-size: 1.25rem" [value]="'8+'"
+        severity="danger"></i>
+      <i class="pi pi-envelope p-text-secondary" size="large" pBadge style="font-size: 1.25rem" severity="danger"></i>
+      <span style="font-size: 40px; margin-right:20px; color: rgb(255, 255, 255)">|</span>
+      <i class="pi pi-user" routerLink= "/header" style="font-size: 1.5rem" ></i>
+
+      <!-- <p-speedDial [model]="linearMenu" direction="down" [transitionDelay]="50" showIcon="pi pi-bars"
+        hideIcon="pi pi-times" buttonClassName="p-button-outlined" style="margin-top:-20vh;"></p-speedDial> -->
+
+      <i class=" pi pi-align-justify" style="font-size: 1.5rem" ></i>
+    </div>
+  </div>
+
+  <div class="content" role="main">
+
+    <input type="hidden" #selection>
+    <div class="card-container">
+    </div>
+
+    <!-- Footer -->
+    <!-- <footer>
+      Love Angular?&nbsp;
+      <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
+        <div class="github-star-badge">
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          Star
+        </div>
+      </a>
+      <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+      </a>
+  </footer> -->
+
+  </div>
+
+
+</div>
+
+
+<!-- <app-root></app-root> -->

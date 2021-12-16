@@ -1,0 +1,39 @@
+.app {
+    background: #fff;
+    padding: 20px 30px;
+    width: 500px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
+ng-sidebar-container{
+  height: 100vh;
+  margin-top: 28px;
+  margin-left: -28px;
+  color: white;
+}
+::ng-deep .ng-sidebar{
+  margin-left: -20;
+  background-color: #06202d;
+  width: 250px;
+  padding-left: 10px;
+}
+.sidebar{
+  
+  margin-top: 28px;
+  height: 20px;
+}
+.speeddial-linear-demo{
+  font-size: 1rem;
+}
+:host ::ng-deep {
+  .speeddial-linear-demo {
+
+      .p-speeddial-direction-down {
+          left: calc(50% - 2rem);
+          top: 0;
+      }
+  }
+}
+
+.pi:hover {
+font-size: 2.5rem;
+}

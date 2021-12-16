@@ -1,0 +1,148 @@
+<style>
+    .Add{
+        background-color: rgb(44, 167, 40);
+        border-radius:5px;
+        width: 80px;
+        height: 30px;
+        border:0 ;
+        color: white;
+        
+        margin-top: 5px;
+        
+    }
+    .Add:hover{
+        background-color:rgba(187, 164, 149, 0.842);
+        border: none;
+        color: black;
+        font-size:medium;
+        
+    }
+    .kaydet{
+        background-color: rgb(44, 167, 40);
+        border-radius:5px;
+        width: 80px;
+        height: 30px;
+        border:0 ;
+        color: white;
+        
+        margin-top: 5px;
+        
+    }
+    
+    .Edit{
+        
+        background-color: rgba(255, 0, 0, 0);
+        border-radius:10px;
+        width: 30px;
+        height: 30px;
+        border:0 ;
+        color: black;
+    }
+    .Edit:hover{
+
+        background-color: rgb(62, 70, 177);
+        border: none;
+        font-size:medium;
+        color: rgb(255, 255, 255);
+    }
+    .p-table{
+        width: 4400px;
+    }
+</style>
+<div class="card">
+    
+<div  [formGroup]="formHatirlatma">
+    <div class="p-text-bold" style="font-size: 20px;margin-left: -200px; margin-bottom: 10px; margin-top: 40px;" align="middle">Kullanıcı Bilgi Formu</div>
+    <div class="mt-5 box">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                        <label for="ad">Kullanıcı Adı</label><br>
+                </div>
+                <div class="form-col" >
+                    <div class="col">
+                        <input
+                          type="text"
+                          pInputText
+                          id="ad"
+                          formControlName="ad"
+                          placeholder="Kullanıcı Adı"
+                          class="p-inputtext-sm"
+                        />
+                      </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                        <label for="ad">Kullanıcı Soyadı</label><br>
+                </div>
+                <div class="form-col" >
+                    <div class="col">
+                        <input
+                          type="text"
+                          pInputText
+                          id="soyad"
+                          formControlName="soyad"
+                          placeholder="Kullanıcı Soyadı"
+                          class="p-inputtext-sm"
+                        />
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                    
+                    <label for="date">Doğum Tarihi</label>
+                </div>
+                <div class="form-row">
+                    <div class="col" >
+                        <p-calendar
+                          appendTo="body"
+                          id="date"
+                          class="p-inputtext-sm"
+                          readonly="true"
+                          placeholder="Doğum Tarihi"
+                          formControlName="date"
+                          [showIcon]="true"
+                          [readonlyInput]="true"
+                          
+                        ></p-calendar>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group mt-4" style="margin-bottom: 5px;">
+                        <label for="ad">Mail Adresi</label><br>
+                </div>
+                <div class="form-col" >
+                    <div class="col">
+                        <input
+                          type="text"
+                          pInputText
+                          id="mail"
+                          formControlName="mail"
+                          placeholder="E-mail Adresi"
+                          class="p-inputtext-sm"
+                        />
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div align="end">     
+            <button class="Add" (click)="showDialog()" alig>Kaydet</button>
+        </div>
+        
+    </div>
+    
+      
+    </div></div>
+
+
+    <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+        <span>Kullanıcı Kaydı Tamamlandı</span>
+        
+        <div align="end"> 
+              <button class="kaydet" (click)="showDialog()"><i class="pi pi-fw pi-check" style="font-size: 1rem," align="end"></i></button>
+        </div>
+    </p-dialog>
